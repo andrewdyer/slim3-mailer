@@ -151,16 +151,16 @@ $app->get("/", function (Request $request, Response $response) use($container) {
 
 | Method | Description |
 | --- | --- |
-| attachFile(string $path) | Path to a file to set as an attachment. |
-| detachFile(string $path) | Path to a file to remove as an attachment. |
-| setBcc(string $address, string $name = "") | Set the Bcc of the message. |
-| setBody($body) | Set the body of the message. |
-| setCc(string $address, string $name = "") | Set the Cc of the message |
-| setDate(DateTimeInterface $dateTime) | Set the date at which this message was created. |
-| setFrom(string $address, string $name = "") | Set the sender of the message. |
-| setPriority(int $priority) | Set the priority of the message. |
-| setSubject(string $subject) | Set the subject of the message. |
-| setTo(string $address, string $name = "") | Set the recipent of the message. |
+| `attachFile(string $path)` | Path to a file to set as an attachment. |
+| `detachFile(string $path)` | Path to a file to remove as an attachment. |
+| `setBcc(string $address, string $name = "")` | Set the Bcc of the message. |
+| `setBody($body)` | Set the body of the message. |
+| `setCc(string $address, string $name = "")` | Set the Cc of the message |
+| `setDate(DateTimeInterface $dateTime)` | Set the date at which this message was created. |
+| `setFrom(string $address, string $name = "")` | Set the sender of the message. |
+| `setPriority(int $priority)` | Set the priority of the message. |
+| `setSubject(string $subject)` | Set the subject of the message. |
+| `setTo(string $address, string $name = "")` | Set the recipent of the message. |
 
 ## Useful Links
 
