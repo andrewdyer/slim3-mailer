@@ -1,6 +1,6 @@
 # Slim3 Mailer
 
-Mailable support for the Slim Framework using Twig and (Swift Mailer)[https://github.com/swiftmailer/swiftmailer]. Mailables will massively tidy up your controller methods or routes, and will make sending email a breeze.
+Mailable support for the Slim Framework using Twig and [Swift Mailer](https://github.com/swiftmailer/swiftmailer). Mailables will massively tidy up your controller methods or routes, and will make sending email a breeze.
 
 ## License
 
@@ -56,8 +56,12 @@ $app->run();
 
 ```php
 $app->get("/", function (Request $request, Response $response) use($container) {
-    $container["mailer"]->sendMessage("emails/welcome.html.twig", ["name" => "John Doe"], function($message) {
-        $message->setTo("johndoe@mail.com", "John");
+    $user = new stdClass;
+    $user->name = "John Doe";
+    $user->email = "johndoe@mail.com";
+    
+    $container["mailer"]->sendMessage("emails/welcome.html.twig", ["user" => $user], function($message) use($user) {
+        $message->setTo($user->email, $user->name);
         $message->setSubject("Welcome to the Team!");
     });
     
