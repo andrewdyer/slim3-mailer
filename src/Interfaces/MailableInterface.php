@@ -2,7 +2,7 @@
 
 namespace Anddye\Interfaces;
 
-use App\Mail\Mailer\Mailer;
+use Anddye\Mailer\Mailer;
 
 /**
  * Interface MailableInterface
