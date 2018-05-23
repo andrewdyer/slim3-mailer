@@ -86,6 +86,7 @@ $app->get("/", function (Request $request, Response $response) use($container) {
     return $response;
 });
 ```
+**welcome.html.twig**
 
 ```html
 <h1>Hello {{ user.name }}</h1>
