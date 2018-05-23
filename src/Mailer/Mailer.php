@@ -19,10 +19,10 @@ class Mailer
 {
 
     /** @var string */
-    protected $host = "";
+    protected $host = "localhost";
 
-    /** @var string */
-    protected $port = "";
+    /** @var integer */
+    protected $port = 25;
 
     /** @var string */
     protected $username = "";
