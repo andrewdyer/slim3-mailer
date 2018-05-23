@@ -2,9 +2,10 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/22e680c56faa40a493455089195bf841)](https://www.codacy.com/app/andrewdyer/slim3-mailer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=andrewdyer/slim3-mailer&amp;utm_campaign=Badge_Grade)
 
-Mailable support for the Slim Framework using Twig and 
-[Swift Mailer](https://github.com/swiftmailer/swiftmailer). Mailables will massively 
-tidy up your controller methods or routes, and will make sending email a breeze.
+Email support for the Slim Framework using Twig and 
+[Swift Mailer](https://github.com/swiftmailer/swiftmailer). Mailable classes will
+massively  tidy up your controller methods or routes, and will make sending email 
+a breeze.
 
 ## License
 
@@ -18,9 +19,9 @@ composer require andrewdyer/slim3-mailer
 
 ## Usage
 
-Attach the mailer to the container so it can be accessed anywhere you need. The mailer 
-takes two arguements; an instance of `Slim\Views\Twig` and an optional array of SMTP settings.
-
+Attach a new instance of `Anddye\Mailer\Mailer` to your applications container so 
+it can be accessed anywhere you need. `Mailer` takes two arguements; an instance of 
+`Slim\Views\Twig` and an optional array of SMTP settings.
 
 ```php
 $app = new \Slim\App;
@@ -37,7 +38,7 @@ $container["mailer"] = function($container) {
     ]);
         
     // Set the details of the default sender
-    $mailer->setDefaultFrom("admin@mail.com", "Webmaster");
+    $mailer->setDefaultFrom("no-reply@mail.com", "Webmaster");
     
     return $mailer;
 };
@@ -45,7 +46,7 @@ $container["mailer"] = function($container) {
 $app->run();
 ```
 
-If you application doesn't use Twig views already, you will need to also attach 
+If your application doesn't use Twig views already, you will need to also attach 
 this to your container.
 
 ```php
@@ -56,7 +57,6 @@ $container["view"] = function ($container) {
     
     return $view;
 };
-
 ``` 
 
 ### Supported Options
@@ -91,11 +91,13 @@ $app->get("/", function (Request $request, Response $response) use($container) {
 
 Using mailable classes are a lot more elegant than the basic usage example above. Building 
 up the mail in a mailable class cleans up controllers and routes, making things look 
-a more tidy and manageable.
+a more tidy and less cluttered as well as making things so much more manageable.
+
+Mailable classes are required to extend the base `Anddye\Mailer\Mailable` class;
 
 ```php
 use Anddye\Mailer\Mailable;
-    
+
 class WelcomeMailable extends Mailable
 {
     
@@ -118,6 +120,10 @@ class WelcomeMailable extends Mailable
     
 }
 ```
+
+Now in your controller or route, you set the recipients address and name, passing 
+just a single argument into the `sendMessage` method - a new instance of the mailable 
+class;
 
 ```php
 $app->get("/", function (Request $request, Response $response) use($container) {
