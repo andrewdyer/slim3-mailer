@@ -18,7 +18,9 @@ composer require andrewdyer/slim3-mailer
 
 ## Usage
 
-Attach the mailer to the container so it can be accessed anywhere you need. 
+Attach the mailer to the container so it can be accessed anywhere you need. The mailer 
+takes two arguements; an instance of `Slim\Views\Twig` and an optional array of SMTP settings.
+
 
 ```php
 $app = new \Slim\App;
@@ -43,10 +45,10 @@ $container["mailer"] = function($container) {
 $app->run();
 ```
 
-If you application doesn't use Twig views already, you will need to also attach this to your container.
+If you application doesn't use Twig views already, you will need to also attach 
+this to your container.
 
 ```php
-
 $container["view"] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . "/../resources/views");
     $basePath = rtrim(str_ireplace("index.php", "", $container["request"]->getUri()->getBasePath()), "/");
