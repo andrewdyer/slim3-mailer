@@ -11,8 +11,8 @@ use Swift_Message;
  * Class MessageBuilder
  * 
  * @author Andrew Dyer <andrewdyer@outlook.com>
- * @category Mail
- * @see https://github.com/andrewdyer/slim3-restful-api-web-seed
+ * @category Mailer
+ * @see https://github.com/andrewdyer/slim3-mailer
  */
 class MessageBuilder implements MessageBuilderInterface
 {

@@ -9,7 +9,7 @@ use App\Mail\Mailer\Mailer;
  * 
  * @author Andrew Dyer <andrewdyer@outlook.com>
  * @category Interfaces
- * @see https://github.com/andrewdyer/slim3-restful-api-web-seed
+ * @see https://github.com/andrewdyer/slim3-mailer
  */
 interface MailableInterface
 {

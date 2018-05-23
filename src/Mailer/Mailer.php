@@ -11,8 +11,8 @@ use Slim\Views\Twig;
  * Class Mailer
  * 
  * @author Andrew Dyer <andrewdyer@outlook.com>
- * @category Mail
- * @see https://github.com/andrewdyer/slim3-restful-api-web-seed
+ * @category Mailer
+ * @see https://github.com/andrewdyer/slim3-mailer
  */
 class Mailer
 {
@@ -66,7 +66,9 @@ class Mailer
         $message = new MessageBuilder(new Swift_Message);
         $message->setFrom($this->_from["address"], $this->_from["name"]);
 
-        call_user_func($callback, $message);
+        if ($callback) {
+            call_user_func($callback, $message);
+        }
 
         $message->setBody($this->_twig->fetch($view, $data));
 

@@ -10,8 +10,8 @@ use DateTimeInterface;
  * Class Mailable
  * 
  * @author Andrew Dyer <andrewdyer@outlook.com>
- * @category Mail
- * @see https://github.com/andrewdyer/slim3-restful-api-web-seed
+ * @category Mailer
+ * @see https://github.com/andrewdyer/slim3-mailer
  */
 abstract class Mailable implements MailableInterface, MessageBuilderInterface
 {
@@ -44,7 +44,7 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     protected $view;
 
     /** @var array */
-    protected $viewData = [];
+    protected $data = [];
 
     /** @var array */
 
@@ -82,7 +82,7 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     {
         $this->build();
 
-        $mailer->sendMessage($this->view, $this->viewData, function ($message) {
+        $mailer->sendMessage($this->view, $this->data, function ($message) {
             $message->setTo($this->to["address"], $this->to["name"]);
             $message->setSubject($this->subject);
 
@@ -209,13 +209,13 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * 
      * @param string $view
-     * @param array $viewData optional
+     * @param array $data optional
      * @return $this
      */
-    public function setView(string $view, array $viewData = [])
+    public function setView(string $view, array $data = [])
     {
         $this->view = $view;
-        $this->viewData = $viewData;
+        $this->data = $data;
 
         return $this;
     }
