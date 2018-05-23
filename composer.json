@@ -1,0 +1,31 @@
+{
+    "name": "andrewdyer/slim3-mailer",
+    "description": "",
+    "type": "library",
+    "keywords": [],
+    "homepage": "https://github.com/andrewdyer/slim3-mailer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Dyer",
+            "email": "andrewdyer@outlook.com",
+            "homepage": "http://andrewdyer.rocks",
+            "role": "developer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/andrewdyer/slim3-mailer.git"
+    },
+    "require": {
+        "php": ">=7.1.14",
+        "slim/twig-view": "^2.2",
+        "swiftmailer/swiftmailer": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anddye\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
