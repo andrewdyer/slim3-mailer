@@ -42,3 +42,17 @@ $container["mailer"] = function($container) {
     
 $app->run();
 ```
+
+```php
+$app->get("/", function (Request $request, Response $response) use($container) {
+    
+    $container["mailer"]->sendMessage("emails/welcome.html.twig", ["name" => "John Doe"], function($message) {
+        $message->setTo("johndoe@mail.com", "John");
+        $message->setSubject("Welcome to the Team!");
+    });
+    
+    $response->getBody()->write("Mail sent!");
+    
+    return $response;
+});
+```
