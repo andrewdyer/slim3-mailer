@@ -14,19 +14,13 @@ composer require andrewdyer/slim3-mailer
 
 ## Usage
 
+Attach the mailer to the container so it can be accessed anywhere you need. 
+
 ```php
 $app = new \Slim\App;
     
 $container = $app->getContainer();
-    
-$container["view"] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . "/../resources/views");
-    $basePath = rtrim(str_ireplace("index.php", "", $container["request"]->getUri()->getBasePath()), "/");
-    $view->addExtension(new \Slim\Views\TwigExtension($container["router"], $basePath));
-    
-    return $view;
-};
-    
+       
 $container["mailer"] = function($container) {
     $twig = $container["view"];
     $mailer = new \Anddye\Mailer\Mailer($twig, [
@@ -45,6 +39,20 @@ $container["mailer"] = function($container) {
 $app->run();
 ```
 
+If you application doesn't use Twig views already, you will need to also attach this to your container.
+
+```php
+
+$container["view"] = function ($container) {
+    $view = new \Slim\Views\Twig(__DIR__ . "/../resources/views");
+    $basePath = rtrim(str_ireplace("index.php", "", $container["request"]->getUri()->getBasePath()), "/");
+    $view->addExtension(new \Slim\Views\TwigExtension($container["router"], $basePath));
+    
+    return $view;
+};
+
+``` 
+
 ### Supported Options
 
 | Option | Type | Description |
@@ -53,6 +61,8 @@ $app->run();
 | port | integer | The port to connect to. |
 | username | string | The username to authenticate with. |
 | password | string | The password to authenticate with. |
+
+### Sending the Email (Basic Example)
 
 ```php
 $app->get("/", function (Request $request, Response $response) use($container) {
@@ -70,6 +80,8 @@ $app->get("/", function (Request $request, Response $response) use($container) {
     return $response;
 });
 ```
+
+### Sending with a Mailable
 
 ```php
 use Anddye\Mailer\Mailable;
