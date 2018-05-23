@@ -66,3 +66,43 @@ $app->get("/", function (Request $request, Response $response) use($container) {
     return $response;
 });
 ```
+
+```php
+use Anddye\Mailer\Mailable;
+    
+class WelcomeMailable extends Mailable
+{
+    
+    protected $user;
+    
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
+    
+    public function build()
+    {
+        $this->setSubject("Welcome to the Team!");
+        $this->setView("emails/welcome.html.twig", [
+            "user" => $this->user
+        ]);
+        
+        return $this;
+    }
+    
+}
+```
+
+```php
+$app->get("/", function (Request $request, Response $response) use($container) {
+    $user = new stdClass;
+    $user->name = "John Doe";
+    $user->email = "johndoe@mail.com";
+    
+    $container["mailer"]->setTo($user->email, $user->name)->sendMessage(new WelcomeMailable($user));
+     
+    $response->getBody()->write("Mail sent!");
+    
+    return $response;
+});
+```
