@@ -18,23 +18,46 @@ class Mailer
 {
 
     /** @var string */
-    private $_from = [];
+    protected $host = "";
+
+    /** @var string */
+    protected $port = "";
+
+    /** @var string */
+    protected $username = "";
+
+    /** @var string */
+    protected $password = "";
+
+    /** @var string */
+    protected $from = [];
 
     /** @var Swift_Mailer */
-    private $_swiftMailer;
+    protected $swiftMailer;
 
     /** @var Twig */
-    private $_twig;
+    protected $twig;
 
     /**
      * 
      * @param Swift_Mailer $swiftMailer
      * @param Twig $twig
      */
-    public function __construct(Swift_Mailer $swiftMailer, Twig $twig)
+    public function __construct(Twig $twig, array $settings = [])
     {
-        $this->_swiftMailer = $swiftMailer;
-        $this->_twig = $twig;
+        // Parse the settings, update the mailer properties.
+        foreach ($settings as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+
+        $transport = new Swift_SmtpTransport($this->host, $this->port);
+        $transport->setUsername($this->username);
+        $transport->setPassword($this->password);
+
+        $this->swiftMailer = new Swift_Mailer($transport);
+        $this->twig = $twig;
     }
 
     /**
@@ -45,7 +68,7 @@ class Mailer
      */
     public function setDefaultFrom(string $address, string $name = "")
     {
-        $this->_from = compact("address", "name");
+        $this->from = compact("address", "name");
 
         return $this;
     }
@@ -64,15 +87,15 @@ class Mailer
         }
 
         $message = new MessageBuilder(new Swift_Message);
-        $message->setFrom($this->_from["address"], $this->_from["name"]);
+        $message->setFrom($this->from["address"], $this->from["name"]);
 
         if ($callback) {
             call_user_func($callback, $message);
         }
 
-        $message->setBody($this->_twig->fetch($view, $data));
+        $message->setBody($this->twig->fetch($view, $data));
 
-        return $this->_swiftMailer->send($message->getSwiftMessage());
+        return $this->swiftMailer->send($message->getSwiftMessage());
     }
 
     /**
