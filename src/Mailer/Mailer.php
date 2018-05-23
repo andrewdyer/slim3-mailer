@@ -5,6 +5,7 @@ namespace Anddye\Mailer;
 use Anddye\Interfaces\MailableInterface;
 use Swift_Mailer;
 use Swift_Message;
+use Swift_SmtpTransport;
 use Slim\Views\Twig;
 
 /**
@@ -40,8 +41,8 @@ class Mailer
 
     /**
      * 
-     * @param Swift_Mailer $swiftMailer
      * @param Twig $twig
+     * @param array $settings optional
      */
     public function __construct(Twig $twig, array $settings = [])
     {
