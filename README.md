@@ -150,7 +150,7 @@ $app->get("/", function (Request $request, Response $response) use($container) {
 ### Methods
 
 | Method | Description |
-| --- | --- | --- |
+| --- | --- |
 | attachFile(string $path) | Path to a file to set as an attachment. |
 | detachFile(string $path) | Path to a file to remove as an attachment. |
 | setBcc(string $address, string $name = "") | Set the Bcc of the message. |
