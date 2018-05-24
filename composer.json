@@ -1,8 +1,8 @@
 {
     "name": "andrewdyer/slim3-mailer",
-    "description": "",
+    "description": "Email support for the Slim Framework using Twig and Swift Mailer.",
     "type": "library",
-    "keywords": [],
+    "keywords": ["slim", "slim3", "slim-framework", "swiftmailer", "slim-mail", "slim-mailer", "mailer", "email", "emails"],
     "homepage": "https://github.com/andrewdyer/slim3-mailer",
     "license": "MIT",
     "authors": [
