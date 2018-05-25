@@ -1,6 +1,11 @@
 # Slim3 Mailer
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/22e680c56faa40a493455089195bf841)](https://www.codacy.com/app/andrewdyer/slim3-mailer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=andrewdyer/slim3-mailer&amp;utm_campaign=Badge_Grade)
+[![Latest Stable Version](https://poser.pugx.org/andrewdyer/slim3-mailer/version)](https://packagist.org/packages/andrewdyer/slim3-mailer)
+[![Total Downloads](https://poser.pugx.org/andrewdyer/slim3-mailer/downloads)](https://packagist.org/packages/andrewdyer/slim3-mailer)
+[![Latest Unstable Version](https://poser.pugx.org/andrewdyer/slim3-mailer/v/unstable)](//packagist.org/packages/andrewdyer/slim3-mailer)
+[![License](https://poser.pugx.org/andrewdyer/slim3-mailer/license)](https://packagist.org/packages/andrewdyer/slim3-mailer)
+[![composer.lock available](https://poser.pugx.org/andrewdyer/slim3-mailer/composerlock)](https://packagist.org/packages/andrewdyer/slim3-mailer)
 
 Email support for the Slim Framework using Twig and 
 [Swift Mailer](https://github.com/swiftmailer/swiftmailer). Mailable classes will
