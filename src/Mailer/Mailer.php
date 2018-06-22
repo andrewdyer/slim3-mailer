@@ -40,7 +40,7 @@ class Mailer
     protected $twig;
 
     /** @var string */
-    protected $protocol;
+    protected $protocol = "";
 
     /**
      *
