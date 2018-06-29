@@ -39,7 +39,8 @@ $container["mailer"] = function($container) {
         "host"      => "",  // SMTP Host
         "port"      => "",  // SMTP Port
         "username"  => "",  // SMTP Username
-        "password"  => ""   // SMTP Password
+        "password"  => "",  // SMTP Password
+        "protocol"  => ""   // SSL or TLS
     ]);
         
     // Set the details of the default sender
