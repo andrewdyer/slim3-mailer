@@ -10,7 +10,7 @@ use Slim\Views\Twig;
 
 /**
  * Class Mailer
- * 
+ *
  * @author Andrew Dyer <andrewdyer@outlook.com>
  * @category Mailer
  * @see https://github.com/andrewdyer/slim3-mailer
@@ -39,8 +39,11 @@ class Mailer
     /** @var Twig */
     protected $twig;
 
+    /** @var string */
+    protected $protocol = "";
+
     /**
-     * 
+     *
      * @param Twig $twig
      * @param array $settings optional
      */
@@ -53,7 +56,8 @@ class Mailer
             }
         }
 
-        $transport = new Swift_SmtpTransport($this->host, $this->port);
+        if ()
+        $transport = new Swift_SmtpTransport($this->host, $this->port, $this->protocol);
         $transport->setUsername($this->username);
         $transport->setPassword($this->password);
 
@@ -62,7 +66,7 @@ class Mailer
     }
 
     /**
-     * 
+     *
      * @param string $address
      * @param string $name optional
      * @return $this
@@ -75,7 +79,7 @@ class Mailer
     }
 
     /**
-     * 
+     *
      * @param mixed $view
      * @param array $data optional
      * @param callable $callback optional
@@ -100,7 +104,7 @@ class Mailer
     }
 
     /**
-     * 
+     *
      * @param string $address
      * @param string $name optional
      * @return PendingMailable
