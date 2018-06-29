@@ -73,6 +73,7 @@ $container['view'] = function ($container) {
 | port | integer | The port to connect to. |
 | username | string | The username to authenticate with. |
 | password | string | The password to authenticate with. |
+| protocol | string | The encryption method, either SSL or TLS. |
 
 ### Sending the Email (Basic Example)
 
