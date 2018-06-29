@@ -56,7 +56,6 @@ class Mailer
             }
         }
 
-        if ()
         $transport = new Swift_SmtpTransport($this->host, $this->port, $this->protocol);
         $transport->setUsername($this->username);
         $transport->setPassword($this->password);
