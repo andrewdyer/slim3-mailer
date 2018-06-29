@@ -9,26 +9,27 @@ use Swift_SmtpTransport;
 use Slim\Views\Twig;
 
 /**
- * Class Mailer
+ * Class Mailer.
  *
  * @author Andrew Dyer <andrewdyer@outlook.com>
+ *
  * @category Mailer
+ *
  * @see https://github.com/andrewdyer/slim3-mailer
  */
 class Mailer
 {
-
     /** @var string */
-    protected $host = "localhost";
+    protected $host = 'localhost';
 
-    /** @var integer */
+    /** @var int */
     protected $port = 25;
 
     /** @var string */
-    protected $username = "";
+    protected $username = '';
 
     /** @var string */
-    protected $password = "";
+    protected $password = '';
 
     /** @var string */
     protected $from = [];
@@ -40,11 +41,10 @@ class Mailer
     protected $twig;
 
     /** @var string */
-    protected $protocol = "";
+    protected $protocol = null;
 
     /**
-     *
-     * @param Twig $twig
+     * @param Twig  $twig
      * @param array $settings optional
      */
     public function __construct(Twig $twig, array $settings = [])
@@ -65,33 +65,33 @@ class Mailer
     }
 
     /**
-     *
      * @param string $address
-     * @param string $name optional
+     * @param string $name    optional
+     *
      * @return $this
      */
-    public function setDefaultFrom(string $address, string $name = "")
+    public function setDefaultFrom(string $address, string $name = '')
     {
-        $this->from = compact("address", "name");
+        $this->from = compact('address', 'name');
 
         return $this;
     }
 
     /**
-     *
-     * @param mixed $view
-     * @param array $data optional
+     * @param mixed    $view
+     * @param array    $data     optional
      * @param callable $callback optional
+     *
      * @return int
      */
-    public function sendMessage($view, array $data = [], Callable $callback = null)
+    public function sendMessage($view, array $data = [], callable $callback = null)
     {
         if ($view instanceof MailableInterface) {
             return $view->sendMessage($this);
         }
 
-        $message = new MessageBuilder(new Swift_Message);
-        $message->setFrom($this->from["address"], $this->from["name"]);
+        $message = new MessageBuilder(new Swift_Message());
+        $message->setFrom($this->from['address'], $this->from['name']);
 
         if ($callback) {
             call_user_func($callback, $message);
@@ -103,14 +103,13 @@ class Mailer
     }
 
     /**
-     *
      * @param string $address
-     * @param string $name optional
+     * @param string $name    optional
+     *
      * @return PendingMailable
      */
-    public function setTo(string $address, string $name = "")
+    public function setTo(string $address, string $name = '')
     {
         return (new PendingMailable($this))->setTo($address, $name);
     }
-
 }

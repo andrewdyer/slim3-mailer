@@ -3,23 +3,23 @@
 namespace Anddye\Mailer;
 
 /**
- * Class PendingMailable
- * 
+ * Class PendingMailable.
+ *
  * @author Andrew Dyer <andrewdyer@outlook.com>
+ *
  * @category Mailer
+ *
  * @see https://github.com/andrewdyer/slim3-mailer
  */
 class PendingMailable
 {
-
     /** @var Mailer */
     private $_mailer;
-    
+
     /** @var array */
     private $_to = [];
 
     /**
-     * 
      * @param Mailer $mailer
      */
     public function __construct(Mailer $mailer)
@@ -28,8 +28,8 @@ class PendingMailable
     }
 
     /**
-     * 
      * @param Mailable $mailable
+     *
      * @return mixed
      */
     public function sendMessage(Mailable $mailable)
@@ -40,16 +40,15 @@ class PendingMailable
     }
 
     /**
-     * 
      * @param string $address
-     * @param string $name optional
+     * @param string $name    optional
+     *
      * @return $this
      */
-    public function setTo(string $address, string $name = "")
+    public function setTo(string $address, string $name = '')
     {
         $this->_to = compact('address', 'name');
 
         return $this;
     }
-
 }

@@ -8,20 +8,20 @@ use Swift_Attachment;
 use Swift_Message;
 
 /**
- * Class MessageBuilder
- * 
+ * Class MessageBuilder.
+ *
  * @author Andrew Dyer <andrewdyer@outlook.com>
+ *
  * @category Mailer
+ *
  * @see https://github.com/andrewdyer/slim3-mailer
  */
 class MessageBuilder implements MessageBuilderInterface
 {
-
-    /** @var Swift_Message  */
+    /** @var Swift_Message */
     private $_swiftMessage;
 
     /**
-     * 
      * @param Swift_Message $swiftMessage
      */
     public function __construct(Swift_Message $swiftMessage)
@@ -30,8 +30,8 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param string $path
+     *
      * @return $this
      */
     public function attachFile(string $path)
@@ -42,8 +42,8 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param string $path
+     *
      * @return $this
      */
     public function detachFile(string $path)
@@ -54,7 +54,6 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @return Swift_Message
      */
     public function getSwiftMessage()
@@ -63,12 +62,12 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param string $address
-     * @param string $name optional
+     * @param string $name    optional
+     *
      * @return $this
      */
-    public function setBcc(string $address, string $name = "")
+    public function setBcc(string $address, string $name = '')
     {
         $this->_swiftMessage->setBcc($address, $name);
 
@@ -76,8 +75,8 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param mixed $body
+     *
      * @return $this
      */
     public function setBody($body)
@@ -88,12 +87,12 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param string $address
-     * @param string $name optional
+     * @param string $name    optional
+     *
      * @return $this
      */
-    public function setCc(string $address, string $name = "")
+    public function setCc(string $address, string $name = '')
     {
         $this->_swiftMessage->setCc($address, $name);
 
@@ -101,8 +100,8 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param DateTimeInterface $dateTime
+     *
      * @return $this
      */
     public function setDate(DateTimeInterface $dateTime)
@@ -113,12 +112,12 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param string $address
-     * @param string $name optional
+     * @param string $name    optional
+     *
      * @return $this
      */
-    public function setFrom(string $address, string $name = "")
+    public function setFrom(string $address, string $name = '')
     {
         $this->_swiftMessage->setFrom($address, $name);
 
@@ -126,8 +125,8 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param int $priority
+     *
      * @return $this
      */
     public function setPriority(int $priority)
@@ -138,8 +137,8 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param string $subject
+     *
      * @return $this
      */
     public function setSubject(string $subject)
@@ -150,16 +149,15 @@ class MessageBuilder implements MessageBuilderInterface
     }
 
     /**
-     * 
      * @param type $address
-     * @param type $name optional
+     * @param type $name    optional
+     *
      * @return $this
      */
-    public function setTo(string $address, string $name = "")
+    public function setTo(string $address, string $name = '')
     {
         $this->_swiftMessage->setTo($address, $name);
 
         return $this;
     }
-
 }
