@@ -33,18 +33,18 @@ $app = new \Slim\App;
     
 $container = $app->getContainer();
        
-$container["mailer"] = function($container) {
-    $twig = $container["view"];
+$container['mailer'] = function($container) {
+    $twig = $container['view'];
     $mailer = new \Anddye\Mailer\Mailer($twig, [
-        "host"      => "",  // SMTP Host
-        "port"      => "",  // SMTP Port
-        "username"  => "",  // SMTP Username
-        "password"  => "",  // SMTP Password
-        "protocol"  => ""   // SSL or TLS
+        'host'      => '',  // SMTP Host
+        'port'      => '',  // SMTP Port
+        'username'  => '',  // SMTP Username
+        'password'  => '',  // SMTP Password
+        'protocol'  => ''   // SSL or TLS
     ]);
         
     // Set the details of the default sender
-    $mailer->setDefaultFrom("no-reply@mail.com", "Webmaster");
+    $mailer->setDefaultFrom('no-reply@mail.com', 'Webmaster');
     
     return $mailer;
 };
@@ -56,10 +56,10 @@ If your application doesn't use Twig views already, you will need to also attach
 this to your container.
 
 ```php
-$container["view"] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . "/../resources/views");
-    $basePath = rtrim(str_ireplace("index.php", "", $container["request"]->getUri()->getBasePath()), "/");
-    $view->addExtension(new \Slim\Views\TwigExtension($container["router"], $basePath));
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views');
+    $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
+    $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
     
     return $view;
 };
@@ -77,17 +77,17 @@ $container["view"] = function ($container) {
 ### Sending the Email (Basic Example)
 
 ```php
-$app->get("/", function (Request $request, Response $response) use($container) {
+$app->get('/', function (Request $request, Response $response) use($container) {
     $user = new stdClass;
-    $user->name = "John Doe";
-    $user->email = "johndoe@mail.com";
+    $user->name = 'John Doe';
+    $user->email = 'johndoe@mail.com';
     
-    $container["mailer"]->sendMessage("emails/welcome.html.twig", ["user" => $user], function($message) use($user) {
+    $container['mailer']->sendMessage('emails/welcome.html.twig', ['user' => $user], function($message) use($user) {
         $message->setTo($user->email, $user->name);
-        $message->setSubject("Welcome to the Team!");
+        $message->setSubject('Welcome to the Team!');
     });
     
-    $response->getBody()->write("Mail sent!");
+    $response->getBody()->write('Mail sent!');
     
     return $response;
 });
@@ -125,9 +125,9 @@ class WelcomeMailable extends Mailable
     
     public function build()
     {
-        $this->setSubject("Welcome to the Team!");
-        $this->setView("emails/welcome.html.twig", [
-            "user" => $this->user
+        $this->setSubject('Welcome to the Team!');
+        $this->setView('emails/welcome.html.twig', [
+            'user' => $this->user
         ]);
         
         return $this;
@@ -141,14 +141,14 @@ just a single argument into the `sendMessage` method - a new instance of the mai
 class;
 
 ```php
-$app->get("/", function (Request $request, Response $response) use($container) {
+$app->get('/', function (Request $request, Response $response) use($container) {
     $user = new stdClass;
-    $user->name = "John Doe";
-    $user->email = "johndoe@mail.com";
+    $user->name = 'John Doe';
+    $user->email = 'johndoe@mail.com';
     
-    $container["mailer"]->setTo($user->email, $user->name)->sendMessage(new WelcomeMailable($user));
+    $container['mailer']->setTo($user->email, $user->name)->sendMessage(new WelcomeMailable($user));
      
-    $response->getBody()->write("Mail sent!");
+    $response->getBody()->write('Mail sent!');
     
     return $response;
 });
@@ -160,14 +160,14 @@ $app->get("/", function (Request $request, Response $response) use($container) {
 | --- | --- |
 | `attachFile(string $path)` | Path to a file to set as an attachment. |
 | `detachFile(string $path)` | Path to a file to remove as an attachment. |
-| `setBcc(string $address, string $name = "")` | Set the Bcc of the message. |
+| `setBcc(string $address, string $name = '')` | Set the Bcc of the message. |
 | `setBody($body)` | Set the body of the message. |
-| `setCc(string $address, string $name = "")` | Set the Cc of the message |
+| `setCc(string $address, string $name = '')` | Set the Cc of the message |
 | `setDate(DateTimeInterface $dateTime)` | Set the date at which this message was created. |
-| `setFrom(string $address, string $name = "")` | Set the sender of the message. |
+| `setFrom(string $address, string $name = '')` | Set the sender of the message. |
 | `setPriority(int $priority)` | Set the priority of the message. |
 | `setSubject(string $subject)` | Set the subject of the message. |
-| `setTo(string $address, string $name = "")` | Set the recipent of the message. |
+| `setTo(string $address, string $name = '')` | Set the recipent of the message. |
 
 ## Useful Links
 
