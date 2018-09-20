@@ -77,12 +77,14 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param Mailer $mailer
+     *
+     * @return int
      */
     public function sendMessage(Mailer $mailer)
     {
         $this->build();
 
-        $mailer->sendMessage($this->view, $this->data, function ($message) {
+        return $mailer->sendMessage($this->view, $this->data, function ($message) {
             $message->setTo($this->to['address'], $this->to['name']);
             $message->setSubject($this->subject);
 
