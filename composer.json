@@ -17,7 +17,7 @@
         "source": "https://github.com/andrewdyer/slim3-mailer.git"
     },
     "require": {
-        "php": ">=7.1.14",
+        "php": ">=7.0.0",
         "slim/slim": "^3.10",
         "slim/twig-view": "^2.2",
         "swiftmailer/swiftmailer": "^6.0"
