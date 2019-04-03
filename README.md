@@ -166,6 +166,7 @@ $app->get('/', function (Request $request, Response $response) use($container) {
 | `setCc(string $address, string $name = '')` | Set the Cc of the message |
 | `setDate(DateTimeInterface $dateTime)` | Set the date at which this message was created. |
 | `setFrom(string $address, string $name = '')` | Set the sender of the message. |
+| `setReplyTo(string $address, string $name = '')` | Set the ReplyTo of the message. |
 | `setPriority(int $priority)` | Set the priority of the message. |
 | `setSubject(string $subject)` | Set the subject of the message. |
 | `setTo(string $address, string $name = '')` | Set the recipent of the message. |
