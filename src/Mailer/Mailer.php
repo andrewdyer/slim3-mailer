@@ -112,4 +112,14 @@ class Mailer
     {
         return (new PendingMailable($this))->setTo($address, $name);
     }
+
+    /**
+     * The Transport used to send messages.
+     *
+     * @return Swift_Transport
+     */
+    public function getTransport()
+    {
+        return $this->swiftMailer->getTransport();
+    }
 }
