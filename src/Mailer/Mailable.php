@@ -97,7 +97,7 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
             }
 
             if ($this->cc) {
-                $message->setBcc($this->cc['address'], $this->cc['name']);
+                $message->setCc($this->cc['address'], $this->cc['name']);
             }
 
             if ($this->priority) {
