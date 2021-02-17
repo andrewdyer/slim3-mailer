@@ -53,6 +53,14 @@ interface MessageBuilderInterface
     public function setCc(string $address, string $name = '');
 
     /**
+     * @param string $address
+     * @param string $name    optional
+     *
+     * @return $this
+     */
+    public function setReplyTo(string $address, string $name = '');
+
+    /**
      * @param DateTimeInterface $dateTime
      *
      * @return $this

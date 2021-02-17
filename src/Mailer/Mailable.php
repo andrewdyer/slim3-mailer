@@ -26,6 +26,9 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /** @var array */
     protected $cc = [];
 
+    /** @var array */
+    protected $replyTo = [];
+
     /** @var DateTimeInterface */
     protected $dateTime;
 
@@ -100,6 +103,10 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
                 $message->setCc($this->cc['address'], $this->cc['name']);
             }
 
+            if ($this->replyTo) {
+                $message->setReplyTo($this->replyTo['address'], $this->replyTo['name']);
+            }
+
             if ($this->priority) {
                 $message->setPriority($this->priority);
             }
@@ -142,6 +149,19 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     public function setCc(string $address, string $name = '')
     {
         $this->cc = compact('address', 'name');
+
+        return $this;
+    }
+
+    /**
+     * @param string $address
+     * @param string $name    optional
+     *
+     * @return $this
+     */
+    public function setReplyTo(string $address, string $name = '')
+    {
+        $this->replyTo = compact('address', 'name');
 
         return $this;
     }
