@@ -41,7 +41,7 @@ $container['mailer'] = function($container) {
         'port'      => '',  // SMTP Port
         'username'  => '',  // SMTP Username
         'password'  => '',  // SMTP Password
-        'protocol'  => ''   // SSL or TLS
+        'encryption'  => ''   // SSL or TLS
     ]);
         
     // Set the details of the default sender
@@ -74,7 +74,7 @@ $container['view'] = function ($container) {
 | port | integer | The port to connect to. |
 | username | string | The username to authenticate with. |
 | password | string | The password to authenticate with. |
-| protocol | string | The encryption method, either SSL or TLS. |
+| encryption | string | The encryption method, either SSL or TLS. |
 
 ### Sending the Email (Basic Example)
 
