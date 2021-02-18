@@ -2,7 +2,6 @@
 
 namespace Anddye\Mailer;
 
-use Anddye\Interfaces\MessageBuilderInterface;
 use DateTimeInterface;
 use Swift_Attachment;
 use Swift_Message;

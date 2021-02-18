@@ -1,8 +1,6 @@
 <?php
 
-namespace Anddye\Interfaces;
-
-use Anddye\Mailer\Mailer;
+namespace Anddye\Mailer;
 
 /**
  * Interface MailableInterface.

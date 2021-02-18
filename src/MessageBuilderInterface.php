@@ -1,6 +1,6 @@
 <?php
 
-namespace Anddye\Interfaces;
+namespace Anddye\Mailer;
 
 use DateTimeInterface;
 

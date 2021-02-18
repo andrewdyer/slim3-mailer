@@ -2,7 +2,6 @@
 
 namespace Anddye\Mailer;
 
-use Anddye\Interfaces\MailableInterface;
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;

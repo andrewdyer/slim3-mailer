@@ -2,8 +2,6 @@
 
 namespace Anddye\Mailer;
 
-use Anddye\Interfaces\MailableInterface;
-use Anddye\Interfaces\MessageBuilderInterface;
 use DateTimeInterface;
 
 /**
