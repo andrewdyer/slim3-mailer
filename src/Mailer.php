@@ -2,29 +2,28 @@
 
 namespace Anddye\Mailer;
 
+use Slim\Views\Twig;
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
-use Slim\Views\Twig;
 use Swift_Transport;
 
 class Mailer
 {
+    protected $from = [];
     protected $host = 'localhost';
-
-    protected $port = 25;
-
-    protected $username = '';
 
     protected $password = '';
 
-    protected $from = [];
+    protected $port = 25;
+
+    protected $protocol = null;
 
     protected $swiftMailer;
 
     protected $twig;
 
-    protected $protocol = null;
+    protected $username = '';
 
     public function __construct(Twig $twig, array $settings = [])
     {
@@ -43,11 +42,9 @@ class Mailer
         $this->twig = $twig;
     }
 
-    public function setDefaultFrom(string $address, string $name = ''): self
+    public function getTransport(): Swift_Transport
     {
-        $this->from = compact('address', 'name');
-
-        return $this;
+        return $this->swiftMailer->getTransport();
     }
 
     public function sendMessage($view, array $data = [], callable $callback = null): int
@@ -68,13 +65,15 @@ class Mailer
         return $this->swiftMailer->send($message->getSwiftMessage());
     }
 
+    public function setDefaultFrom(string $address, string $name = ''): self
+    {
+        $this->from = compact('address', 'name');
+
+        return $this;
+    }
+
     public function setTo(string $address, string $name = ''): PendingMailable
     {
         return (new PendingMailable($this))->setTo($address, $name);
-    }
-
-    public function getTransport(): Swift_Transport
-    {
-        return $this->swiftMailer->getTransport();
     }
 }

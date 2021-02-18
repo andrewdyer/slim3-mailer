@@ -55,13 +55,6 @@ class MessageBuilder implements MessageBuilderInterface
         return $this;
     }
 
-    public function setReplyTo(string $address, string $name = ''): self
-    {
-        $this->_swiftMessage->setReplyTo($address, $name);
-
-        return $this;
-    }
-
     public function setDate(DateTimeInterface $dateTime): self
     {
         $this->_swiftMessage->setDate($dateTime);
@@ -79,6 +72,13 @@ class MessageBuilder implements MessageBuilderInterface
     public function setPriority(int $priority): self
     {
         $this->_swiftMessage->setPriority($priority);
+
+        return $this;
+    }
+
+    public function setReplyTo(string $address, string $name = ''): self
+    {
+        $this->_swiftMessage->setReplyTo($address, $name);
 
         return $this;
     }

@@ -12,7 +12,7 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     protected $cc = [];
 
-    protected $replyTo = [];
+    protected $data = [];
 
     protected $dateTime;
 
@@ -20,13 +20,13 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     protected $priority;
 
-    protected $to = [];
+    protected $replyTo = [];
 
     protected $subject;
 
-    protected $view;
+    protected $to = [];
 
-    protected $data = [];
+    protected $view;
 
     public function attachFile(string $path)
     {
@@ -97,13 +97,6 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
         return $this;
     }
 
-    public function setReplyTo(string $address, string $name = ''): self
-    {
-        $this->replyTo = compact('address', 'name');
-
-        return $this;
-    }
-
     public function setDate(DateTimeInterface $dateTime): self
     {
         $this->dateTime = $dateTime;
@@ -125,9 +118,9 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
         return $this;
     }
 
-    public function setTo(string $address, string $name = ''): self
+    public function setReplyTo(string $address, string $name = ''): self
     {
-        $this->to = compact('address', 'name');
+        $this->replyTo = compact('address', 'name');
 
         return $this;
     }
@@ -135,6 +128,13 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     public function setSubject(string $subject): self
     {
         $this->subject = $subject;
+
+        return $this;
+    }
+
+    public function setTo(string $address, string $name = ''): self
+    {
+        $this->to = compact('address', 'name');
 
         return $this;
     }

@@ -16,13 +16,13 @@ interface MessageBuilderInterface
 
     public function setCc(string $address, string $name = '');
 
-    public function setReplyTo(string $address, string $name = '');
-
     public function setDate(DateTimeInterface $dateTime);
 
     public function setFrom(string $address, string $name = '');
 
     public function setPriority(int $priority);
+
+    public function setReplyTo(string $address, string $name = '');
 
     public function setSubject(string $subject);
 
