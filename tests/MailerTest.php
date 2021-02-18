@@ -12,17 +12,17 @@ final class MailerTest extends TestCase
     {
         $host = 'localhost';
         $port = 25;
-        $encryption = 'tls';
+        $protocol = 'tls';
         $username = 'username';
         $password = 'password';
 
-        $mailer = new Mailer(new Twig(__DIR__), compact('host', 'port', 'username', 'password', 'encryption'));
+        $mailer = new Mailer(new Twig(__DIR__), compact('host', 'port', 'username', 'password', 'protocol'));
 
         $transport = $mailer->getTransport();
 
         $this->assertEquals($host, $transport->getHost());
         $this->assertEquals($port, $transport->getPort());
-        $this->assertEquals($encryption, $transport->getEncryption());
+        $this->assertEquals($protocol, $transport->getEncryption());
         $this->assertEquals($username, $transport->getUsername());
         $this->assertEquals($password, $transport->getPassword());
     }

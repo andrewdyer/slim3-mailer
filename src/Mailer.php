@@ -10,7 +10,6 @@ use Swift_Transport;
 
 class Mailer
 {
-    protected $encryption = null;
     protected $from = [];
 
     protected $host = 'localhost';
@@ -18,6 +17,7 @@ class Mailer
     protected $password = '';
 
     protected $port = 25;
+    protected $protocol = null;
 
     protected $swiftMailer;
 
@@ -34,7 +34,7 @@ class Mailer
             }
         }
 
-        $transport = new Swift_SmtpTransport($this->host, $this->port, $this->encryption);
+        $transport = new Swift_SmtpTransport($this->host, $this->port, $this->protocol);
         $transport->setUsername($this->username);
         $transport->setPassword($this->password);
 
