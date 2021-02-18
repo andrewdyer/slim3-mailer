@@ -13,7 +13,7 @@ class PendingMailable
         $this->_mailer = $mailer;
     }
 
-    public function sendMessage(Mailable $mailable)
+    public function sendMessage(Mailable $mailable): int
     {
         $mailable->setTo($this->_to['address'], $this->_to['name']);
 
