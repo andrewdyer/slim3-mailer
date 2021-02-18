@@ -4,24 +4,24 @@ namespace Anddye\Mailer;
 
 class PendingMailable
 {
-    private $_mailer;
-    private $_to = [];
+    private $mailer;
+    private $to = [];
 
     public function __construct(Mailer $mailer)
     {
-        $this->_mailer = $mailer;
+        $this->mailer = $mailer;
     }
 
     public function sendMessage(Mailable $mailable): int
     {
-        $mailable->setTo($this->_to['address'], $this->_to['name']);
+        $mailable->setTo($this->to['address'], $this->to['name']);
 
-        return $this->_mailer->sendMessage($mailable);
+        return $this->mailer->sendMessage($mailable);
     }
 
     public function setTo(string $address, string $name = ''): self
     {
-        $this->_to = compact('address', 'name');
+        $this->to = compact('address', 'name');
 
         return $this;
     }

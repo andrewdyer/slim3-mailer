@@ -8,91 +8,91 @@ use Swift_Message;
 
 class MessageBuilder implements MessageBuilderInterface
 {
-    private $_swiftMessage;
+    private $swiftMessage;
 
     public function __construct(Swift_Message $swiftMessage)
     {
-        $this->_swiftMessage = $swiftMessage;
+        $this->swiftMessage = $swiftMessage;
     }
 
     public function attachFile(string $path): self
     {
-        $this->_swiftMessage->attach(Swift_Attachment::fromPath($path));
+        $this->swiftMessage->attach(Swift_Attachment::fromPath($path));
 
         return $this;
     }
 
     public function detachFile(string $path): self
     {
-        $this->_swiftMessage->detach(Swift_Attachment::fromPath($path));
+        $this->swiftMessage->detach(Swift_Attachment::fromPath($path));
 
         return $this;
     }
 
     public function getSwiftMessage(): Swift_Message
     {
-        return $this->_swiftMessage;
+        return $this->swiftMessage;
     }
 
     public function setBcc(string $address, string $name = ''): self
     {
-        $this->_swiftMessage->setBcc($address, $name);
+        $this->swiftMessage->setBcc($address, $name);
 
         return $this;
     }
 
     public function setBody($body): self
     {
-        $this->_swiftMessage->setBody($body, 'text/html');
+        $this->swiftMessage->setBody($body, 'text/html');
 
         return $this;
     }
 
     public function setCc(string $address, string $name = ''): self
     {
-        $this->_swiftMessage->setCc($address, $name);
+        $this->swiftMessage->setCc($address, $name);
 
         return $this;
     }
 
     public function setDate(DateTimeInterface $dateTime): self
     {
-        $this->_swiftMessage->setDate($dateTime);
+        $this->swiftMessage->setDate($dateTime);
 
         return $this;
     }
 
     public function setFrom(string $address, string $name = ''): self
     {
-        $this->_swiftMessage->setFrom($address, $name);
+        $this->swiftMessage->setFrom($address, $name);
 
         return $this;
     }
 
     public function setPriority(int $priority): self
     {
-        $this->_swiftMessage->setPriority($priority);
+        $this->swiftMessage->setPriority($priority);
 
         return $this;
     }
 
     public function setReplyTo(string $address, string $name = ''): self
     {
-        $this->_swiftMessage->setReplyTo($address, $name);
+        $this->swiftMessage->setReplyTo($address, $name);
 
         return $this;
     }
 
     public function setSubject(string $subject): self
     {
-        $this->_swiftMessage->setSubject($subject);
+        $this->swiftMessage->setSubject($subject);
 
         return $this;
     }
 
     public function setTo(string $address, string $name = ''): self
     {
-        $this->_swiftMessage->setTo($address, $name);
+        $this->swiftMessage->setTo($address, $name);
 
         return $this;
     }
