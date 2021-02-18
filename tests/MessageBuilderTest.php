@@ -4,17 +4,18 @@ namespace Anddye\Mailer\Tests;
 
 use Anddye\Mailer\MessageBuilder;
 use PHPUnit\Framework\TestCase;
+use Swift_Message;
 
 final class MessageBuilderTest extends TestCase
 {
-    private $swiftMessage;
     private $messageBuilder;
+    private $swiftMessage;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->swiftMessage = new \Swift_Message();
+        $this->swiftMessage = new Swift_Message();
         $this->messageBuilder = new MessageBuilder($this->swiftMessage);
     }
 
@@ -49,7 +50,7 @@ final class MessageBuilderTest extends TestCase
 
     public function testCanSetDate(): void
     {
-        $date =  new \DateTime('2021-02-18');
+        $date = new \DateTime('2021-02-18');
 
         $this->messageBuilder->setDate($date);
 
