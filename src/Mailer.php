@@ -8,45 +8,24 @@ use Swift_SmtpTransport;
 use Slim\Views\Twig;
 use Swift_Transport;
 
-/**
- * Class Mailer.
- *
- * @author Andrew Dyer <andrewdyer@outlook.com>
- *
- * @category Mailer
- *
- * @see https://github.com/andrewdyer/slim3-mailer
- */
 class Mailer
 {
-    /** @var string */
     protected $host = 'localhost';
 
-    /** @var int */
     protected $port = 25;
 
-    /** @var string */
     protected $username = '';
 
-    /** @var string */
     protected $password = '';
 
-    /** @var string */
     protected $from = [];
 
-    /** @var Swift_Mailer */
     protected $swiftMailer;
 
-    /** @var Twig */
     protected $twig;
 
-    /** @var string */
     protected $protocol = null;
 
-    /**
-     * @param Twig  $twig
-     * @param array $settings optional
-     */
     public function __construct(Twig $twig, array $settings = [])
     {
         // Parse the settings, update the mailer properties.
@@ -64,10 +43,6 @@ class Mailer
         $this->twig = $twig;
     }
 
-    /**
-     * @param string $address
-     * @param string $name    optional
-     */
     public function setDefaultFrom(string $address, string $name = ''): self
     {
         $this->from = compact('address', 'name');
@@ -75,11 +50,6 @@ class Mailer
         return $this;
     }
 
-    /**
-     * @param mixed    $view
-     * @param array    $data     optional
-     * @param callable $callback optional
-     */
     public function sendMessage($view, array $data = [], callable $callback = null): int
     {
         if ($view instanceof MailableInterface) {
@@ -98,18 +68,11 @@ class Mailer
         return $this->swiftMailer->send($message->getSwiftMessage());
     }
 
-    /**
-     * @param string $address
-     * @param string $name    optional
-     */
     public function setTo(string $address, string $name = ''): PendingMailable
     {
         return (new PendingMailable($this))->setTo($address, $name);
     }
 
-    /**
-     * The Transport used to send messages.
-     */
     public function getTransport(): Swift_Transport
     {
         return $this->swiftMailer->getTransport();
