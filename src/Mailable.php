@@ -28,7 +28,7 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     protected $view;
 
-    public function attachFile(string $path)
+    public function attachFile(string $path): self
     {
         $this->attachments[] = $path;
 
@@ -88,6 +88,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     public function setBody($body): self
     {
         // TODO: Merge this and set view together
+
+        return $this;
     }
 
     public function setCc(string $address, string $name = ''): self
