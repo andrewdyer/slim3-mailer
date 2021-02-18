@@ -28,7 +28,7 @@
     },
     "require": {
         "php": ">=7.1",
-        "slim/slim": "^3.12.3",
+        "slim/slim": "^3.0",
         "swiftmailer/swiftmailer": "^6.0",
         "slim/twig-view": "^2.0"
     },
