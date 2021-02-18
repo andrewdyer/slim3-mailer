@@ -30,13 +30,13 @@ it can be accessed anywhere you need. `Mailer` takes two arguements; an instance
 `Slim\Views\Twig` and an optional array of SMTP settings.
 
 ```php
-$app = new \Slim\App;
+$app = new Slim\App;
     
 $container = $app->getContainer();
        
 $container['mailer'] = function($container) {
     $twig = $container['view'];
-    $mailer = new \Anddye\Mailer\Mailer($twig, [
+    $mailer = new Anddye\Mailer\Mailer($twig, [
         'host'      => '',  // SMTP Host
         'port'      => '',  // SMTP Port
         'username'  => '',  // SMTP Username
@@ -58,9 +58,9 @@ this to your container.
 
 ```php
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views');
+    $view = new Slim\Views\Twig(__DIR__ . '/../resources/views');
     $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
-    $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
+    $view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
     
     return $view;
 };
@@ -79,7 +79,7 @@ $container['view'] = function ($container) {
 ### Sending the Email (Basic Example)
 
 ```php
-$app->get('/', function (Request $request, Response $response) use($container) {
+$app->get('/', function ($request, $response) use($container) {
     $user = new stdClass;
     $user->name = 'John Doe';
     $user->email = 'johndoe@mail.com';
@@ -143,7 +143,7 @@ just a single argument into the `sendMessage` method - a new instance of the mai
 class;
 
 ```php
-$app->get('/', function (Request $request, Response $response) use($container) {
+$app->get('/', function ($request, $response) use($container) {
     $user = new stdClass;
     $user->name = 'John Doe';
     $user->email = 'johndoe@mail.com';
