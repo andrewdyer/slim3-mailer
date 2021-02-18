@@ -11,6 +11,7 @@ use Swift_Transport;
 class Mailer
 {
     protected $from = [];
+
     protected $host = 'localhost';
 
     protected $password = '';
