@@ -7,7 +7,6 @@
 [![Monthly Downloads](https://poser.pugx.org/andrewdyer/slim3-mailer/d/monthly)](https://packagist.org/packages/andrewdyer/slim3-mailer)
 [![Latest Unstable Version](https://poser.pugx.org/andrewdyer/slim3-mailer/v/unstable)](https://packagist.org/packages/andrewdyer/slim3-mailer)
 [![License](https://poser.pugx.org/andrewdyer/slim3-mailer/license)](https://packagist.org/packages/andrewdyer/slim3-mailer)
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W415UZ0)
 
 Email support for the Slim Framework using Twig and 
 [Swift Mailer](https://github.com/swiftmailer/swiftmailer). Mailable classes will
