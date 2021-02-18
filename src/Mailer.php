@@ -6,6 +6,7 @@ use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
 use Slim\Views\Twig;
+use Swift_Transport;
 
 /**
  * Class Mailer.
@@ -66,10 +67,8 @@ class Mailer
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return $this
      */
-    public function setDefaultFrom(string $address, string $name = '')
+    public function setDefaultFrom(string $address, string $name = ''): self
     {
         $this->from = compact('address', 'name');
 
@@ -80,10 +79,8 @@ class Mailer
      * @param mixed    $view
      * @param array    $data     optional
      * @param callable $callback optional
-     *
-     * @return int
      */
-    public function sendMessage($view, array $data = [], callable $callback = null)
+    public function sendMessage($view, array $data = [], callable $callback = null): int
     {
         if ($view instanceof MailableInterface) {
             return $view->sendMessage($this);
@@ -104,20 +101,16 @@ class Mailer
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return PendingMailable
      */
-    public function setTo(string $address, string $name = '')
+    public function setTo(string $address, string $name = ''): PendingMailable
     {
         return (new PendingMailable($this))->setTo($address, $name);
     }
 
     /**
      * The Transport used to send messages.
-     *
-     * @return Swift_Transport
      */
-    public function getTransport()
+    public function getTransport(): Swift_Transport
     {
         return $this->swiftMailer->getTransport();
     }

@@ -52,8 +52,6 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param string $path
-     *
-     * @return $this
      */
     public function attachFile(string $path)
     {
@@ -64,10 +62,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param string $path
-     *
-     * @return $this
      */
-    public function detachFile(string $path)
+    public function detachFile(string $path): self
     {
         if (false !== ($key = array_search($path, $this->attachments))) {
             unset($this->attachments[$key]);
@@ -78,10 +74,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param Mailer $mailer
-     *
-     * @return int
      */
-    public function sendMessage(Mailer $mailer)
+    public function sendMessage(Mailer $mailer): int
     {
         $this->build();
 
@@ -118,10 +112,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return $this
      */
-    public function setBcc(string $address, string $name = '')
+    public function setBcc(string $address, string $name = ''): self
     {
         $this->bcc = compact('address', 'name');
 
@@ -130,10 +122,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param mixed $body
-     *
-     * @return $this
      */
-    public function setBody($body)
+    public function setBody($body): self
     {
         // TODO: Merge this and set view together
     }
@@ -141,10 +131,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return $this
      */
-    public function setCc(string $address, string $name = '')
+    public function setCc(string $address, string $name = ''): self
     {
         $this->cc = compact('address', 'name');
 
@@ -154,10 +142,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return $this
      */
-    public function setReplyTo(string $address, string $name = '')
+    public function setReplyTo(string $address, string $name = ''): self
     {
         $this->replyTo = compact('address', 'name');
 
@@ -166,10 +152,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param DateTimeInterface $dateTime
-     *
-     * @return $this
      */
-    public function setDate(DateTimeInterface $dateTime)
+    public function setDate(DateTimeInterface $dateTime): self
     {
         $this->dateTime = $dateTime;
 
@@ -179,10 +163,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return $this
      */
-    public function setFrom(string $address, string $name = '')
+    public function setFrom(string $address, string $name = ''): self
     {
         $this->from = compact('address', 'name');
 
@@ -191,10 +173,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param int $priority
-     *
-     * @return $this
      */
-    public function setPriority(int $priority)
+    public function setPriority(int $priority): self
     {
         $this->priority = $priority;
 
@@ -204,10 +184,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * @param type $address
      * @param type $name    optional
-     *
-     * @return $this
      */
-    public function setTo(string $address, string $name = '')
+    public function setTo(string $address, string $name = ''): self
     {
         $this->to = compact('address', 'name');
 
@@ -216,10 +194,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 
     /**
      * @param string $subject
-     *
-     * @return $this
      */
-    public function setSubject(string $subject)
+    public function setSubject(string $subject): self
     {
         $this->subject = $subject;
 
@@ -229,10 +205,8 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     /**
      * @param string $view
      * @param array  $data optional
-     *
-     * @return $this
      */
-    public function setView(string $view, array $data = [])
+    public function setView(string $view, array $data = []): self
     {
         $this->view = $view;
         $this->data = $data;

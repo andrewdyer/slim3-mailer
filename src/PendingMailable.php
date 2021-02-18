@@ -42,10 +42,8 @@ class PendingMailable
     /**
      * @param string $address
      * @param string $name    optional
-     *
-     * @return $this
      */
-    public function setTo(string $address, string $name = '')
+    public function setTo(string $address, string $name = ''): self
     {
         $this->_to = compact('address', 'name');
 
