@@ -94,4 +94,14 @@ final class MessageBuilderTest extends TestCase
 
         $this->assertEquals($subject, $this->swiftMessage->getSubject());
     }
+
+    public function testCanSetTo(): void
+    {
+        $address = 'andrewdyer@mail.com';
+        $name = 'Andrew Dyer';
+
+        $this->messageBuilder->setTo($address, $name);
+
+        $this->assertEquals([$address => $name], $this->swiftMessage->getTo());
+    }
 }
