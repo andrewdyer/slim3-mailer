@@ -5,7 +5,6 @@ namespace Anddye\Mailer;
 class PendingMailable
 {
     private $_mailer;
-
     private $_to = [];
 
     public function __construct(Mailer $mailer)

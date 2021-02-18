@@ -7,25 +7,15 @@ use DateTimeInterface;
 abstract class Mailable implements MailableInterface, MessageBuilderInterface
 {
     protected $attachments = [];
-
     protected $bcc = [];
-
     protected $cc = [];
-
     protected $data = [];
-
     protected $dateTime;
-
     protected $from = [];
-
     protected $priority;
-
     protected $replyTo = [];
-
     protected $subject;
-
     protected $to = [];
-
     protected $view;
 
     public function attachFile(string $path): self

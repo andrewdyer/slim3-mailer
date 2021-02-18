@@ -11,18 +11,12 @@ use Swift_Transport;
 class Mailer
 {
     protected $from = [];
-
     protected $host = 'localhost';
-
     protected $password = '';
-
     protected $port = 25;
     protected $protocol = null;
-
     protected $swiftMailer;
-
     protected $twig;
-
     protected $username = '';
 
     public function __construct(Twig $twig, array $settings = [])
