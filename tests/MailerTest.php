@@ -11,11 +11,11 @@ final class MailerTest extends TestCase
 {
     public function testCanConfigureTransport(): void
     {
-        $host = 'localhost';
-        $port = 25;
-        $protocol = 'tls';
-        $username = 'username';
-        $password = 'password';
+        $host = getenv('MAILER_HOST');
+        $port = getenv('MAILER_PORT');
+        $protocol = getenv('MAILER_ENCRYPTION');
+        $username = getenv('MAILER_USERNAME');
+        $password = getenv('MAILER_PASSWORD');
 
         $mailer = new Mailer(new Twig(__DIR__), compact('host', 'port', 'username', 'password', 'protocol'));
 
@@ -38,6 +38,7 @@ final class MailerTest extends TestCase
             'port' => getenv('MAILER_PORT'),
             'username' => getenv('MAILER_USERNAME'),
             'password' => getenv('MAILER_PASSWORD'),
+            'protocol' => getenv('MAILER_ENCRYPTION'),
         ]);
 
         $mailer->setDefaultFrom($address, $name);

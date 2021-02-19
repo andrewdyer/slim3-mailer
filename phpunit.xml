@@ -16,6 +16,7 @@
     <php>
         <env name="MAILER_HOST" value=""/>
         <env name="MAILER_PORT" value=""/>
+        <env name="MAILER_ENCRYPTION" value=""/>
         <env name="MAILER_USERNAME" value=""/>
         <env name="MAILER_PASSWORD" value=""/>
         <env name="MAILER_DEFAULT_FROM_ADDRESS" value=""/>
