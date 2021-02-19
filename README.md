@@ -30,13 +30,13 @@ it can be accessed anywhere you need. `Mailer` takes two arguements; an instance
 `Slim\Views\Twig` and an optional array of SMTP settings.
 
 ```php
-$app = new \Slim\App;
+$app = new Slim\App;
     
 $container = $app->getContainer();
        
 $container['mailer'] = function($container) {
     $twig = $container['view'];
-    $mailer = new \Anddye\Mailer\Mailer($twig, [
+    $mailer = new Anddye\Mailer\Mailer($twig, [
         'host'      => '',  // SMTP Host
         'port'      => '',  // SMTP Port
         'username'  => '',  // SMTP Username
@@ -58,9 +58,9 @@ this to your container.
 
 ```php
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views');
+    $view = new Slim\Views\Twig(__DIR__ . '/../resources/views');
     $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
-    $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
+    $view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
     
     return $view;
 };
@@ -79,7 +79,7 @@ $container['view'] = function ($container) {
 ### Sending the Email (Basic Example)
 
 ```php
-$app->get('/', function (Request $request, Response $response) use($container) {
+$app->get('/', function ($request, $response) use($container) {
     $user = new stdClass;
     $user->name = 'John Doe';
     $user->email = 'johndoe@mail.com';
@@ -143,7 +143,7 @@ just a single argument into the `sendMessage` method - a new instance of the mai
 class;
 
 ```php
-$app->get('/', function (Request $request, Response $response) use($container) {
+$app->get('/', function ($request, $response) use($container) {
     $user = new stdClass;
     $user->name = 'John Doe';
     $user->email = 'johndoe@mail.com';
@@ -160,17 +160,17 @@ $app->get('/', function (Request $request, Response $response) use($container) {
 
 | Method | Description |
 | --- | --- |
-| `attachFile(string $path)` | Path to a file to set as an attachment. |
-| `detachFile(string $path)` | Path to a file to remove as an attachment. |
-| `setBcc(string $address, string $name = '')` | Set the Bcc of the message. |
-| `setBody($body)` | Set the body of the message. |
-| `setCc(string $address, string $name = '')` | Set the Cc of the message |
-| `setDate(DateTimeInterface $dateTime)` | Set the date at which this message was created. |
-| `setFrom(string $address, string $name = '')` | Set the sender of the message. |
-| `setReplyTo(string $address, string $name = '')` | Set the ReplyTo of the message. |
-| `setPriority(int $priority)` | Set the priority of the message. |
-| `setSubject(string $subject)` | Set the subject of the message. |
-| `setTo(string $address, string $name = '')` | Set the recipent of the message. |
+| attachFile(string $path) | Path to a file to set as an attachment. |
+| detachFile(string $path) | Path to a file to remove as an attachment. |
+| setBcc(string $address, string $name = '') | Set the Bcc of the message. |
+| setBody($body) | Set the body of the message. |
+| setCc(string $address, string $name = '') | Set the Cc of the message |
+| setDate(DateTimeInterface $dateTime) | Set the date at which this message was created. |
+| setFrom(string $address, string $name = '') | Set the sender of the message. |
+| setReplyTo(string $address, string $name = '') | Set the ReplyTo of the message. |
+| setPriority(int $priority) | Set the priority of the message. |
+| setSubject(string $subject) | Set the subject of the message. |
+| setTo(string $address, string $name = '') | Set the recipent of the message. |
 
 ## Support
 
