@@ -8,7 +8,9 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
 {
     protected $attachments = [];
     protected $bcc = [];
+    protected $bccs = [];
     protected $cc = [];
+    protected $ccs = [];
     protected $data = [];
     protected $dateTime;
     protected $from = [];
