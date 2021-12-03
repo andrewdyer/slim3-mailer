@@ -50,8 +50,20 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
                 $message->setBcc($this->bcc['address'], $this->bcc['name']);
             }
 
+            if ($this->bccs) {
+                foreach ($this->bccs as $bcc) {
+                    $message->addBcc($bcc['address'], $bcc['name']);
+                }
+            }
+
             if ($this->cc) {
                 $message->setCc($this->cc['address'], $this->cc['name']);
+            }
+
+            if ($this->ccs) {
+                foreach ($this->ccs as $cc) {
+                    $message->addCc($cc['address'], $cc['name']);
+                }
             }
 
             if ($this->replyTo) {
@@ -75,6 +87,19 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
         return $this;
     }
 
+    public function addBcc(string $address, string $name = '')
+    {
+        if (!$this->bccs) {
+            $this->bccs = [];
+        }
+        array_push($this->bccs, [
+            "address" => $address,
+            "name" => $name
+        ]);
+
+        return $this;
+    }
+
     public function setBody($body): self
     {
         // TODO: Merge this and set view together
@@ -85,6 +110,19 @@ abstract class Mailable implements MailableInterface, MessageBuilderInterface
     public function setCc(string $address, string $name = ''): self
     {
         $this->cc = compact('address', 'name');
+
+        return $this;
+    }
+
+    public function addCc(string $address, string $name = '')
+    {
+        if (!$this->ccs) {
+            $this->ccs = [];
+        }
+        array_push($this->ccs, [
+            "address" => $address,
+            "name" => $name
+        ]);
 
         return $this;
     }

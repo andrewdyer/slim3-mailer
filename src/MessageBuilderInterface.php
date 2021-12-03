@@ -12,9 +12,13 @@ interface MessageBuilderInterface
 
     public function setBcc(string $address, string $name = '');
 
+    public function addBcc(string $address, string $name = '');
+
     public function setBody($body);
 
     public function setCc(string $address, string $name = '');
+
+    public function addCc(string $address, string $name = '');
 
     public function setDate(DateTimeInterface $dateTime);
 

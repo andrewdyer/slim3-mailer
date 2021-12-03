@@ -41,6 +41,13 @@ class MessageBuilder implements MessageBuilderInterface
         return $this;
     }
 
+    public function addBcc(string $address, string $name = '')
+    {
+        $this->_swiftMessage->addBcc($address, $name);
+
+        return $this;
+    }
+
     public function setBody($body): self
     {
         $this->swiftMessage->setBody($body, 'text/html');
@@ -51,6 +58,13 @@ class MessageBuilder implements MessageBuilderInterface
     public function setCc(string $address, string $name = ''): self
     {
         $this->swiftMessage->setCc($address, $name);
+
+        return $this;
+    }
+
+    public function addCc(string $address, string $name = '')
+    {
+        $this->_swiftMessage->addCc($address, $name);
 
         return $this;
     }
