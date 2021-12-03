@@ -43,7 +43,7 @@ class MessageBuilder implements MessageBuilderInterface
 
     public function addBcc(string $address, string $name = '')
     {
-        $this->_swiftMessage->addBcc($address, $name);
+        $this->swiftMessage->addBcc($address, $name);
 
         return $this;
     }
@@ -64,7 +64,7 @@ class MessageBuilder implements MessageBuilderInterface
 
     public function addCc(string $address, string $name = '')
     {
-        $this->_swiftMessage->addCc($address, $name);
+        $this->swiftMessage->addCc($address, $name);
 
         return $this;
     }
