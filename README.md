@@ -1,12 +1,10 @@
-# Slim3 Mailer
+<h1 align="center">Slim3 Mailer</h1>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/22e680c56faa40a493455089195bf841)](https://www.codacy.com/app/andrewdyer/slim3-mailer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=andrewdyer/slim3-mailer&amp;utm_campaign=Badge_Grade)
-[![Latest Stable Version](https://poser.pugx.org/andrewdyer/slim3-mailer/v/stable)](https://packagist.org/packages/andrewdyer/slim3-mailer)
-[![Total Downloads](https://poser.pugx.org/andrewdyer/slim3-mailer/downloads)](https://packagist.org/packages/andrewdyer/slim3-mailer)
-[![Daily Downloads](https://poser.pugx.org/andrewdyer/slim3-mailer/d/daily)](https://packagist.org/packages/andrewdyer/slim3-mailer)
-[![Monthly Downloads](https://poser.pugx.org/andrewdyer/slim3-mailer/d/monthly)](https://packagist.org/packages/andrewdyer/slim3-mailer)
-[![Latest Unstable Version](https://poser.pugx.org/andrewdyer/slim3-mailer/v/unstable)](https://packagist.org/packages/andrewdyer/slim3-mailer)
-[![License](https://poser.pugx.org/andrewdyer/slim3-mailer/license)](https://packagist.org/packages/andrewdyer/slim3-mailer)
+<p align="center">
+    <a href="https://packagist.org/packages/andrewdyer/slim3-mailer"><img src="https://poser.pugx.org/andrewdyer/slim3-mailer/downloads?style=for-the-badge" alt="Total Downloads"></a>
+    <a href="https://packagist.org/packages/andrewdyer/slim3-mailer"><img src="https://poser.pugx.org/andrewdyer/slim3-mailer/v?style=for-the-badge" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/andrewdyer/slim3-mailer"><img src="https://poser.pugx.org/andrewdyer/slim3-mailer/license?style=for-the-badge" alt="License"></a>
+</p>
 
 Email support for the Slim Framework using Twig and 
 [Swift Mailer](https://github.com/swiftmailer/swiftmailer). Mailable classes will
