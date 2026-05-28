@@ -17,140 +17,6 @@ a breeze.
 
 See the [migration guide](#migrating-to-andrewdyermailer) below for upgrade instructions.
 
-## Migrating to andrewdyer/mailer
-
-[`andrewdyer/mailer`](https://github.com/andrewdyer/mailer) is the modern replacement for this package. The core concept of mailable classes is retained, but the API has been updated to reflect current PHP and dependency standards.
-
-### What has changed
-
-| slim3-mailer                                           | mailer                                                                         |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| Depends on `slim/slim` and `slimphp/twig-view`         | Framework-agnostic, accepts any `Twig\Environment`                             |
-| Uses `swiftmailer/swiftmailer` (abandoned)             | Uses `symfony/mailer` via a swappable transport interface                      |
-| `Mailable::build()` configures the message             | `Mailable::envelope()` and `Mailable::content()` separate routing from content |
-| SMTP settings passed as an array                       | Transport injected via DSN string                                              |
-| `$mailer->setTo()->sendMessage(new WelcomeMailable())` | `$mailer->send(new WelcomeMail())`                                             |
-
-### Installation
-
-Remove the old package and install the new one:
-
-```bash
-composer remove andrewdyer/slim3-mailer
-composer require andrewdyer/mailer
-```
-
-### Updating a mailable class
-
-**Before:**
-
-```php
-use Anddye\Mailer\Mailable;
-
-class WelcomeMailable extends Mailable
-{
-    public function __construct(private $user) {}
-
-    public function build()
-    {
-        $this->setSubject('Welcome to the Team!');
-        $this->setView('emails/welcome.html.twig', [
-            'user' => $this->user,
-        ]);
-
-        return $this;
-    }
-}
-```
-
-**After:**
-
-```php
-use AndrewDyer\Mailer\Mailable;
-use AndrewDyer\Mailer\Values\Address;
-use AndrewDyer\Mailer\Values\Content;
-use AndrewDyer\Mailer\Values\Envelope;
-
-class WelcomeMail extends Mailable
-{
-    public function __construct(private readonly User $user) {}
-
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            to:      new Address($this->user->email, $this->user->name),
-            subject: 'Welcome to the Team!',
-        );
-    }
-
-    public function content(): Content
-    {
-        return new Content(
-            view: 'emails/welcome.html.twig',
-            data: ['user' => $this->user],
-        );
-    }
-}
-```
-
-### Updating the mailer setup in Slim 3
-
-**Before:**
-
-```php
-$container['mailer'] = function ($container) {
-    $mailer = new Anddye\Mailer\Mailer($container['view'], [
-        'host'     => '',
-        'port'     => '',
-        'username' => '',
-        'password' => '',
-        'protocol' => '',
-    ]);
-
-    $mailer->setDefaultFrom('no-reply@mail.com', 'Webmaster');
-
-    return $mailer;
-};
-```
-
-**After:**
-
-```php
-use AndrewDyer\Mailer\Mailer;
-use AndrewDyer\Mailer\Drivers\SymfonyTransport;
-use AndrewDyer\Mailer\Values\Address;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
-
-$container['mailer'] = function ($container) {
-    $mailer = new Mailer(
-        twig:        $container['view']->getTwig(),
-        transport:   new SymfonyTransport('smtp://username:password@host:port'),
-        defaultFrom: new Address('no-reply@mail.com', 'Webmaster'),
-    );
-
-    return $mailer;
-};
-```
-
-Note that `getTwig()` unwraps the underlying `Twig\Environment` from `slim/twig-view`, which is all `andrewdyer/mailer` requires.
-
-### Sending a mailable
-
-**Before:**
-
-```php
-$container['mailer']->setTo($user->email, $user->name)->sendMessage(new WelcomeMailable($user));
-```
-
-**After:**
-
-```php
-$container['mailer']->send(new WelcomeMail($user));
-```
-
-The `to` address is now defined inside the mailable's `envelope()` rather than being set on the mailer at call time.
-
 ## License
 
 Licensed under MIT. Totally free for private or commercial projects.
@@ -310,7 +176,132 @@ $app->get('/', function ($request, $response) use($container) {
 | setSubject(string $subject) | Set the subject of the message. |
 | setTo(string $address, string $name = '') | Set the recipent of the message. |
 
-## Support
+
+## Migrating to andrewdyer/mailer
+
+[`andrewdyer/mailer`](https://github.com/andrewdyer/mailer) is the modern replacement for this package. The core concept of mailable classes is retained, but the API has been updated to reflect current PHP and dependency standards.
+
+### What has changed
+
+| slim3-mailer                                           | mailer                                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| Depends on `slim/slim` and `slimphp/twig-view`         | Framework-agnostic, accepts any `Twig\Environment`                             |
+| Uses `swiftmailer/swiftmailer` (abandoned)             | Uses `symfony/mailer` via a swappable transport interface                      |
+| `Mailable::build()` configures the message             | `Mailable::envelope()` and `Mailable::content()` separate routing from content |
+| SMTP settings passed as an array                       | Transport injected via DSN string                                              |
+| `$mailer->setTo()->sendMessage(new WelcomeMailable())` | `$mailer->send(new WelcomeMail())`                                             |
+
+### Installation
+
+Remove the old package and install the new one:
+
+```bash
+composer remove andrewdyer/slim3-mailer
+composer require andrewdyer/mailer
+```
+
+### Updating a mailable class
+
+**Before:**
+
+```php
+use Anddye\Mailer\Mailable;
+
+class WelcomeMailable extends Mailable
+{
+    public function __construct(private $user) {}
+
+    public function build()
+    {
+        $this->setSubject('Welcome to the Team!');
+        $this->setView('emails/welcome.html.twig', [
+            'user' => $this->user,
+        ]);
+
+        return $this;
+    }
+}
+```
+
+**After:**
+
+```php
+use AndrewDyer\Mailer\Mailable;
+use AndrewDyer\Mailer\Values\Address;
+use AndrewDyer\Mailer\Values\Content;
+use AndrewDyer\Mailer\Values\Envelope;
+
+class WelcomeMail extends Mailable
+{
+    public function __construct(private readonly User $user) {}
+
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            to:      new Address($this->user->email, $this->user->name),
+            subject: 'Welcome to the Team!',
+        );
+    }
+
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails/welcome.html.twig',
+            data: ['user' => $this->user],
+        );
+    }
+}
+```
+
+### Updating the mailer setup in Slim 3
+
+**Before:**
+
+```php
+$container['mailer'] = function ($container) {
+    $mailer = new Anddye\Mailer\Mailer($container['view'], [
+        'host'     => '',
+        'port'     => '',
+        'username' => '',
+        'password' => '',
+        'protocol' => '',
+    ]);
+
+    $mailer->setDefaultFrom('no-reply@mail.com', 'Webmaster');
+
+    return $mailer;
+};
+```
+
+**After:**
+
+```php
+use AndrewDyer\Mailer\Mailer;
+use AndrewDyer\Mailer\Drivers\SymfonyTransport;
+use AndrewDyer\Mailer\Values\Address;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
+$container['mailer'] = function ($container) {
+    $mailer = new Mailer(
+        twig:        $container['view']->getTwig(),
+        transport:   new SymfonyTransport('smtp://username:password@host:port'),
+        defaultFrom: new Address('no-reply@mail.com', 'Webmaster'),
+    );
+
+    return $mailer;
+};
+```
+
+Note that `getTwig()` unwraps the underlying `Twig\Environment` from `slim/twig-view`, which is all `andrewdyer/mailer` requires.
+
+### Sending a mailable
+
+**Before:**
+
+```php
+$container['mailer']->setTo($user->email, $user->name)->sendMessage(new WelcomeMailable($user));
+```
 
 If you are having general issues with this library, then please feel free to contact me on [Twitter](https://twitter.com/andyer92).
 
