@@ -303,11 +303,14 @@ Note that `getTwig()` unwraps the underlying `Twig\Environment` from `slim/twig-
 $container['mailer']->setTo($user->email, $user->name)->sendMessage(new WelcomeMailable($user));
 ```
 
-If you are having general issues with this library, then please feel free to contact me on [Twitter](https://twitter.com/andyer92).
+**After:**
 
-If you believe you have found an issue, please report it using the [issue tracker](https://github.com/andrewdyer/slim3-mailer/issues), or better yet, fork the repository and submit a pull request.
+```php
+$container['mailer']->send(new WelcomeMail($user));
+```
 
-If you're using this package, I'd love to hear your thoughts!
+The `to` address is now defined inside the mailable's `envelope()` rather than being set on the mailer at call time.
+
 
 ## Useful Links
 
